@@ -16,7 +16,6 @@
             = link_to 'Netguru Kraków Workshops 2015', root_path
         %p.navbar-text.navbar-right
           - if user_signed_in?
-            Logged in as
             %strong= link_to "#{current_user.firstname} #{current_user.lastname}", current_user
             |
             = link_to('Edit Profile', edit_user_registration_path) 
