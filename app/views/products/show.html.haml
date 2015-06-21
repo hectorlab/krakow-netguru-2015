@@ -1,19 +1,22 @@
 %p#notice= notice
 %p#error= flash[:error]
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
+%table.table.table-striped
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Price
+      %th Category
+      %th
+      %th
 
-%p
-  %b Category
-  = product.category.name
+  %tbody
+    %tr
+      %td= product.title
+      %td= product.description
+      %td= product.price
+      %td= product.category.name
 
 %h3 Reviews
 = render 'reviews/form'
@@ -22,4 +25,4 @@
 
 = link_to 'Edit', edit_category_product_path(category.id, product.id)
 \|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'
+= link_to 'Back', category_products_path, class: 'btn btn-link'
