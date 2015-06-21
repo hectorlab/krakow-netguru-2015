@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  expose(:user)
+  expose_decorated(:products, ancestor: :user)
+
   def show
-    @user = User.find(params[:id])
+    @recent_reviews = user.reviews.order('id desc').limit(5).decorate
   end
 end

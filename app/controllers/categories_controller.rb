@@ -1,13 +1,12 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
-  before_action :check_admin, only: [:new, :edit, :update, :create]  
-
-
+  before_action :require_admin_presence, only: [:new, :edit, :create, :update]
   expose(:categories)
   expose(:category)
   expose(:product) { Product.new }
 
   def index
+    @products = Product.all
   end
 
   def show
@@ -21,7 +20,7 @@ class CategoriesController < ApplicationController
 
   def create
     self.category = Category.new(category_params)
-
+    
     if category.save
       redirect_to category, notice: 'Category was successfully created.'
     else
@@ -47,8 +46,9 @@ class CategoriesController < ApplicationController
       params.require(:category).permit(:name)
     end
 
-  def check_admin
-    return if current_user.try(:admin?)
-    redirect_to new_user_session_path, notice: 'You must be logged in to have access'
-  end
+    def require_admin_presence
+      if !current_user.admin?
+        redirect_to new_user_session_path
+      end
+    end
 end

@@ -1,4 +1,10 @@
+
+RSpec.configure do |config|
+  config.raise_errors_for_deprecations!
+end
+
 require 'rails_helper'
+
 
 # Specs in this file have access to a helper object that includes
 # the UsersHelper. For example:
