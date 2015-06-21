@@ -16,6 +16,7 @@ gem 'uglifier'
 gem 'quiet_assets'
 gem 'jquery-rails'
 gem 'therubyracer', platforms: :ruby
+gem 'rails_12factor'
 gem 'travis'
 gem 'ffaker'
 gem 'konf'
