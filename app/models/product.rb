@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
-  validates :price, presence: true, format: {with: /\A\d+(?:\.\d{0,2})?\z/}
+  validates :price, presence: true, numericality: true, format: { with: /\A\d+(?:\.\d{0,2})?\z/ }
 
   belongs_to :category
   belongs_to :user
